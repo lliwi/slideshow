@@ -1,0 +1,44 @@
+{% extends '/auth/base-auth.html' %}
+
+
+{% block content %}
+
+{% include 'auth/base-header.html' %}
+
+
+<div class="center">
+    <h1>Users</h1>
+    <div class="user-div">
+        <table class="user-table">
+            <thead>
+                <tr>
+                    <th>Image name</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            {% for image in images %}
+            <tr>
+                <td>{{ image }}</td>
+                <td><a class="button" href="{{ url_for('auth.image_delete', id=image) }}">delete</a>
+                </td>
+            </tr>
+            {% if not loop.last%}
+            {%endif%}
+            {%endfor%}
+        </table>
+        
+    </div>
+
+    <h1>Upload new File</h1>
+    <form method=post action="/auth/image_upload" enctype=multipart/form-data>
+      <input type=file name=file>
+      <input class="button" type=submit value=Upload>
+    </form>
+
+</div>
+
+
+
+
+
+{% endblock %}
